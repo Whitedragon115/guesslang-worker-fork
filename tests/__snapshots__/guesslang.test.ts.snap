@@ -1,0 +1,443 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`guessLang > should match snapshot for the given code snippet 1`] = `
+[
+  {
+    "confidence": 0.36006417870521545,
+    "languageId": "ts",
+  },
+  {
+    "confidence": 0.12616758048534393,
+    "languageId": "js",
+  },
+  {
+    "confidence": 0.11067066341638565,
+    "languageId": "rs",
+  },
+  {
+    "confidence": 0.049941033124923706,
+    "languageId": "cs",
+  },
+  {
+    "confidence": 0.04073625057935715,
+    "languageId": "html",
+  },
+  {
+    "confidence": 0.034685082733631134,
+    "languageId": "dart",
+  },
+  {
+    "confidence": 0.028705749660730362,
+    "languageId": "c",
+  },
+  {
+    "confidence": 0.02582576498389244,
+    "languageId": "lua",
+  },
+  {
+    "confidence": 0.019651010632514954,
+    "languageId": "cpp",
+  },
+  {
+    "confidence": 0.019124053418636322,
+    "languageId": "mm",
+  },
+  {
+    "confidence": 0.01554538682103157,
+    "languageId": "pm",
+  },
+  {
+    "confidence": 0.015271097421646118,
+    "languageId": "ps1",
+  },
+  {
+    "confidence": 0.012661250308156013,
+    "languageId": "java",
+  },
+  {
+    "confidence": 0.012522794306278229,
+    "languageId": "groovy",
+  },
+  {
+    "confidence": 0.012012877501547337,
+    "languageId": "swift",
+  },
+  {
+    "confidence": 0.010405079461634159,
+    "languageId": "pas",
+  },
+  {
+    "confidence": 0.009881828911602497,
+    "languageId": "md",
+  },
+  {
+    "confidence": 0.008674976415932178,
+    "languageId": "prolog",
+  },
+  {
+    "confidence": 0.00856003351509571,
+    "languageId": "php",
+  },
+  {
+    "confidence": 0.008517211303114891,
+    "languageId": "sql",
+  },
+  {
+    "confidence": 0.008150268346071243,
+    "languageId": "ml",
+  },
+  {
+    "confidence": 0.006514098960906267,
+    "languageId": "r",
+  },
+  {
+    "confidence": 0.005204849410802126,
+    "languageId": "go",
+  },
+  {
+    "confidence": 0.004512660205364227,
+    "languageId": "matlab",
+  },
+  {
+    "confidence": 0.004238471854478121,
+    "languageId": "jl",
+  },
+  {
+    "confidence": 0.003899412229657173,
+    "languageId": "erl",
+  },
+  {
+    "confidence": 0.003883998841047287,
+    "languageId": "tex",
+  },
+  {
+    "confidence": 0.0036005694419145584,
+    "languageId": "css",
+  },
+  {
+    "confidence": 0.0031094681471586227,
+    "languageId": "asm",
+  },
+  {
+    "confidence": 0.0027291469741612673,
+    "languageId": "kt",
+  },
+  {
+    "confidence": 0.0026916172355413437,
+    "languageId": "py",
+  },
+  {
+    "confidence": 0.0023645830806344748,
+    "languageId": "xml",
+  },
+  {
+    "confidence": 0.00209893099963665,
+    "languageId": "v",
+  },
+  {
+    "confidence": 0.002020909683778882,
+    "languageId": "hs",
+  },
+  {
+    "confidence": 0.001936757704243064,
+    "languageId": "f90",
+  },
+  {
+    "confidence": 0.0015712525928393006,
+    "languageId": "scala",
+  },
+  {
+    "confidence": 0.0014332145219668746,
+    "languageId": "dm",
+  },
+  {
+    "confidence": 0.001254789880476892,
+    "languageId": "rb",
+  },
+  {
+    "confidence": 0.0012241607764735818,
+    "languageId": "bat",
+  },
+  {
+    "confidence": 0.0011867597931995988,
+    "languageId": "coffee",
+  },
+  {
+    "confidence": 0.0011775789316743612,
+    "languageId": "sh",
+  },
+  {
+    "confidence": 0.001136972103267908,
+    "languageId": "vba",
+  },
+  {
+    "confidence": 0.000994101632386446,
+    "languageId": "ex",
+  },
+  {
+    "confidence": 0.0009934992995113134,
+    "languageId": "cbl",
+  },
+  {
+    "confidence": 0.0006263475515879691,
+    "languageId": "csv",
+  },
+  {
+    "confidence": 0.00045713630970567465,
+    "languageId": "yaml",
+  },
+  {
+    "confidence": 0.000399948243284598,
+    "languageId": "lisp",
+  },
+  {
+    "confidence": 0.0003188799018971622,
+    "languageId": "clj",
+  },
+  {
+    "confidence": 0.00022272310161497444,
+    "languageId": "ini",
+  },
+  {
+    "confidence": 0.00021139078307896852,
+    "languageId": "cmake",
+  },
+  {
+    "confidence": 0.00016815742128528655,
+    "languageId": "json",
+  },
+  {
+    "confidence": 0.000023193719243863598,
+    "languageId": "toml",
+  },
+  {
+    "confidence": 0.000014289931641542353,
+    "languageId": "dockerfile",
+  },
+  {
+    "confidence": 0.000005981031335977605,
+    "languageId": "makefile",
+  },
+]
+`;
+
+exports[`guessLang > should match snapshot for the given code snippet 2`] = `
+[
+  {
+    "confidence": 0.41006417870521544,
+    "languageId": "ts",
+  },
+  {
+    "confidence": 0.17616758048534392,
+    "languageId": "js",
+  },
+  {
+    "confidence": 0.11067066341638565,
+    "languageId": "rs",
+  },
+  {
+    "confidence": 0.09073625057935715,
+    "languageId": "html",
+  },
+  {
+    "confidence": 0.0749410331249237,
+    "languageId": "cs",
+  },
+  {
+    "confidence": 0.058560033515095714,
+    "languageId": "php",
+  },
+  {
+    "confidence": 0.05370574966073036,
+    "languageId": "c",
+  },
+  {
+    "confidence": 0.05360056944191456,
+    "languageId": "css",
+  },
+  {
+    "confidence": 0.052691617235541346,
+    "languageId": "py",
+  },
+  {
+    "confidence": 0.05236458308063448,
+    "languageId": "xml",
+  },
+  {
+    "confidence": 0.05016815742128529,
+    "languageId": "json",
+  },
+  {
+    "confidence": 0.044651010632514955,
+    "languageId": "cpp",
+  },
+  {
+    "confidence": 0.037661250308156015,
+    "languageId": "java",
+  },
+  {
+    "confidence": 0.034685082733631134,
+    "languageId": "dart",
+  },
+  {
+    "confidence": 0.026177578931674363,
+    "languageId": "sh",
+  },
+  {
+    "confidence": 0.02582576498389244,
+    "languageId": "lua",
+  },
+  {
+    "confidence": 0.019124053418636322,
+    "languageId": "mm",
+  },
+  {
+    "confidence": 0.01554538682103157,
+    "languageId": "pm",
+  },
+  {
+    "confidence": 0.015271097421646118,
+    "languageId": "ps1",
+  },
+  {
+    "confidence": 0.012522794306278229,
+    "languageId": "groovy",
+  },
+  {
+    "confidence": 0.012012877501547337,
+    "languageId": "swift",
+  },
+  {
+    "confidence": 0.010405079461634159,
+    "languageId": "pas",
+  },
+  {
+    "confidence": 0.009881828911602497,
+    "languageId": "md",
+  },
+  {
+    "confidence": 0.008674976415932178,
+    "languageId": "prolog",
+  },
+  {
+    "confidence": 0.008150268346071243,
+    "languageId": "ml",
+  },
+  {
+    "confidence": 0.006514098960906267,
+    "languageId": "r",
+  },
+  {
+    "confidence": 0.005204849410802126,
+    "languageId": "go",
+  },
+  {
+    "confidence": 0.004512660205364227,
+    "languageId": "matlab",
+  },
+  {
+    "confidence": 0.004238471854478121,
+    "languageId": "jl",
+  },
+  {
+    "confidence": 0.003899412229657173,
+    "languageId": "erl",
+  },
+  {
+    "confidence": 0.003883998841047287,
+    "languageId": "tex",
+  },
+  {
+    "confidence": 0.0031094681471586227,
+    "languageId": "asm",
+  },
+  {
+    "confidence": 0.0027291469741612673,
+    "languageId": "kt",
+  },
+  {
+    "confidence": 0.00209893099963665,
+    "languageId": "v",
+  },
+  {
+    "confidence": 0.002020909683778882,
+    "languageId": "hs",
+  },
+  {
+    "confidence": 0.001936757704243064,
+    "languageId": "f90",
+  },
+  {
+    "confidence": 0.0015712525928393006,
+    "languageId": "scala",
+  },
+  {
+    "confidence": 0.0014332145219668746,
+    "languageId": "dm",
+  },
+  {
+    "confidence": 0.001254789880476892,
+    "languageId": "rb",
+  },
+  {
+    "confidence": 0.0011867597931995988,
+    "languageId": "coffee",
+  },
+  {
+    "confidence": 0.001136972103267908,
+    "languageId": "vba",
+  },
+  {
+    "confidence": 0.000994101632386446,
+    "languageId": "ex",
+  },
+  {
+    "confidence": 0.0009934992995113134,
+    "languageId": "cbl",
+  },
+  {
+    "confidence": 0.00045713630970567465,
+    "languageId": "yaml",
+  },
+  {
+    "confidence": 0.000399948243284598,
+    "languageId": "lisp",
+  },
+  {
+    "confidence": 0.0003188799018971622,
+    "languageId": "clj",
+  },
+  {
+    "confidence": 0.00021139078307896852,
+    "languageId": "cmake",
+  },
+  {
+    "confidence": 0.000014289931641542353,
+    "languageId": "dockerfile",
+  },
+  {
+    "confidence": -0.4914827886968851,
+    "languageId": "sql",
+  },
+  {
+    "confidence": -0.4987758392235264,
+    "languageId": "bat",
+  },
+  {
+    "confidence": -0.49937365244841203,
+    "languageId": "csv",
+  },
+  {
+    "confidence": -0.499777276898385,
+    "languageId": "ini",
+  },
+  {
+    "confidence": -0.49997680628075614,
+    "languageId": "toml",
+  },
+  {
+    "confidence": -0.499994018968664,
+    "languageId": "makefile",
+  },
+]
+`;
