@@ -6,7 +6,11 @@
 3a8,9
 > import NODE_MODEL_JSON from "./model.json";
 > import NODE_WEIGHTS from "./group1-shard1of1.bin";
-90,95c96
+86,88d91
+< 		const fs = await import('fs');
+< 		const path = await import('path');
+< 
+90,95c93
 < 			fs.readFile(path.join(__dirname, '..', '..', 'model', 'model.json'), (err, data) => {
 < 				if(err) {
 < 					reject(err);
@@ -15,9 +19,13 @@
 < 				resolve(JSON.parse(data.toString()));
 ---
 > 			resolve(NODE_MODEL_JSON);
-97d97
+97d94
 < 		});
-105,110c105
+101,103d97
+< 		const fs = await import('fs');
+< 		const path = await import('path');
+< 
+105,110c99
 < 			fs.readFile(path.join(__dirname, '..', '..', 'model', 'group1-shard1of1.bin'), (err, data) => {
 < 				if(err) {
 < 					reject(err);
@@ -26,5 +34,5 @@
 < 				resolve(data.buffer);
 ---
 > 			resolve(NODE_WEIGHTS);
-112d106
+112d100
 < 		});

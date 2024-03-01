@@ -89,18 +89,12 @@ export class ModelOperations {
 	private static DEFAULT_MIN_CONTENT_SIZE = 20;
 
 	private static NODE_MODEL_JSON_FUNC: () => Promise<{ [key:string]: any }> = async () => {
-		const fs = await import('fs');
-		const path = await import('path');
-
 		return new Promise<any>((resolve, reject) => {
 			resolve(NODE_MODEL_JSON);
 		});
 	}
 
 	private static NODE_WEIGHTS_FUNC: () => Promise<ArrayBuffer> = async () => {
-		const fs = await import('fs');
-		const path = await import('path');
-
 		return new Promise<ArrayBuffer>((resolve, reject) => {
 			resolve(NODE_WEIGHTS);
 		});
