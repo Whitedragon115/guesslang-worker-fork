@@ -6,7 +6,7 @@ Powered by [vscode-languagedetection](https://github.com/microsoft/vscode-langua
 
 ## Usage
 
-You can access the worker at `https://guesslang.waterwater.moe/guess?text=YOUR_CODE`.
+You can access the worker at https://guesslang.waterwater.moe/guess?text=YOUR_CODE
 
 Alternatively, you can utilize the POST method to send a JSON object containing the `text` key.
 
