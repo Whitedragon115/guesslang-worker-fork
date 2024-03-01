@@ -1,4 +1,4 @@
-name: Test
+name: Build
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,14 +34,15 @@ jobs:
         run: pnpm run format
 
       - name: Test
-        run: pnpm run test --coverage
+        run: pnpm run test
+        # run: pnpm run test --coverage
 
-      - name: Upload test coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: ./coverage
-          if-no-files-found: ignore
+      # - name: Upload test coverage
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: coverage
+      #     path: ./coverage
+      #     if-no-files-found: ignore
 
       # https://github.com/cloudflare/wrangler-action
       - name: Deploy Worker

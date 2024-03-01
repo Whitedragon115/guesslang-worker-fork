@@ -1,6 +1,6 @@
 # Guesslang Worker
 
-[![Test](https://github.com/lawvs/guesslang-worker/actions/workflows/build.yml/badge.svg)](https://github.com/lawvs/guesslang-worker/actions/workflows/build.yml)
+[![Build](https://github.com/lawvs/guesslang-worker/actions/workflows/build.yml/badge.svg)](https://github.com/lawvs/guesslang-worker/actions/workflows/build.yml)
 
 A worker that uses guesslang's ML model to detect source code languages
 
