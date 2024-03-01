@@ -6,10 +6,10 @@ describe("vscode-languagedetection", () => {
   it("should match baseline", async () => {
     const exec = util.promisify(child_process.exec);
     const result = await exec(
-      "diff --ignore-all-space --unified node_modules/@vscode/vscode-languagedetection/lib/index.ts src/vscode-languagedetection/index.ts || true",
+      "diff --rcs node_modules/@vscode/vscode-languagedetection/lib/index.ts src/vscode-languagedetection/index.ts || true",
     );
     expect(result.stdout).toMatchFileSnapshot(
-      "__snapshots__/vscode-languagedetection.diff",
+      "__snapshots__/vscode-languagedetection.rcs",
     );
   });
 });
