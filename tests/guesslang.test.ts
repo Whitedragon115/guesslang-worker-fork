@@ -81,7 +81,7 @@ describe("detectLanguages", () => {
 `);
     expect(result).toMatchObject({
       confidence: 0.41006417870521544,
-      isCreditable: true,
+      reliable: true,
       languageId: "ts",
       languageName: "TypeScript",
     });
@@ -92,7 +92,7 @@ describe("detectLanguages", () => {
     const result = await detectLanguages(``);
     expect(result).toMatchObject({
       confidence: 0,
-      isCreditable: false,
+      reliable: false,
       languageId: "txt",
       languageName: "Plain Text",
     });

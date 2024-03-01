@@ -26,7 +26,7 @@ describe("Worker", () => {
     expect(resp.status).toBe(200);
     expect(await resp.json()).toMatchObject({
       confidence: 0.08425559401512146,
-      isCreditable: false,
+      reliable: false,
       languageId: "css",
       languageName: "CSS",
     });
@@ -41,7 +41,7 @@ describe("Worker", () => {
     expect(resp.headers.get("Access-Control-Allow-Origin")).toBe("*");
     expect(await resp.json()).toMatchObject({
       confidence: 0.09199294000864029,
-      isCreditable: false,
+      reliable: false,
       languageId: "ts",
       languageName: "TypeScript",
     });

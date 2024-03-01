@@ -10,6 +10,6 @@ export type DetectionResult = {
   languageId: string;
   languageName: string;
   confidence: number;
-  isCreditable: boolean;
+  reliable: boolean;
   verbose?: ModelResult[];
 };

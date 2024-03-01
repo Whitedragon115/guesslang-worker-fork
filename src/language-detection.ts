@@ -72,7 +72,7 @@ const FALLBACK_LANGUAGE = {
   languageId: "txt",
   languageName: "Plain Text",
   confidence: 0,
-  isCreditable: false,
+  reliable: false,
 } as const;
 
 const DEFAULT_DETECTION_OPTIONS: DetectionOptions = {
@@ -110,8 +110,7 @@ export const detectLanguages = async (
     languageName:
       languagesMap[firstModelResult.languageId as keyof typeof languagesMap],
     confidence: firstModelResult.confidence,
-    isCreditable:
-      firstModelResult.confidence >= options.expectedRelativeConfidence,
+    reliable: firstModelResult.confidence >= options.expectedRelativeConfidence,
     ...(options.verbose ? { verbose: modelResults } : {}),
   };
 };
