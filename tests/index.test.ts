@@ -22,7 +22,7 @@ describe("Worker", () => {
   });
 
   it("should get guesslang works", async () => {
-    const resp = await worker.fetch("/guesslang?text=console.log");
+    const resp = await worker.fetch("/guess?text=console.log");
     expect(resp.status).toBe(200);
     expect(await resp.json()).toMatchObject({
       confidence: 0.08425559401512146,
@@ -33,7 +33,7 @@ describe("Worker", () => {
   });
 
   it("should post guesslang works", async () => {
-    const resp = await worker.fetch("/guesslang", {
+    const resp = await worker.fetch("/guess", {
       method: "POST",
       body: JSON.stringify({ text: 'import { Hono } from "hono";' }),
     });
@@ -55,13 +55,13 @@ describe("Test the application", () => {
   });
 
   it("Should return 400 response", async () => {
-    const res = await app.request("http://localhost/guesslang");
+    const res = await app.request("http://localhost/guess");
     expect(res.status).toBe(400);
     expect(await res.text()).toBe("Missing query parameter 'text'");
   });
 
   it("Should guesslang", async () => {
-    const res = await app.request("http://localhost/guesslang?text=import");
+    const res = await app.request("http://localhost/guess?text=import");
     expect(res.status).toBe(200);
   });
 });

@@ -1,6 +1,8 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { HTTPException } from "hono/http-exception";
-import { DetectionOptions, detectLanguages } from "./language-detection";
+import { detectLanguages } from "./language-detection";
+import { DetectionOptions } from "./types";
 
 // See https://hono.dev/getting-started/cloudflare-workers
 const app = new Hono();
@@ -11,7 +13,7 @@ app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
-app.get("/guesslang", async (c) => {
+app.get("/guess", async (c) => {
   const query = c.req.query();
   const { text, ...options } = query;
   if (!text) {
@@ -23,7 +25,7 @@ app.get("/guesslang", async (c) => {
   return c.json(guessResult);
 });
 
-app.post("/guesslang", async (c) => {
+app.post("/guess", async (c) => {
   const body = await c.req.json<
     Partial<DetectionOptions> & { text?: string }
   >();

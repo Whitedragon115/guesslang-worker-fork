@@ -1,5 +1,6 @@
 import { ModelOperations, ModelResult } from "./vscode-languagedetection/index";
 import languagesMap from "./languages.json";
+import { DetectionOptions, DetectionResult } from "./types";
 
 /*---------------------------------------------------------------------------------------------
  *  Ported from https://github.com/microsoft/vscode/blob/19ecb4b8337d0871f0a204853003a609d716b04e/src/vs/workbench/services/languageDetection/browser/languageDetectionSimpleWorker.ts
@@ -66,20 +67,6 @@ const adjustLanguageConfidence = (modelResult: ModelResult): ModelResult => {
 const modelOperations = new ModelOperations({
   minContentSize: 0,
 });
-
-export type DetectionOptions = {
-  fineTune: boolean;
-  verbose: boolean;
-  expectedRelativeConfidence: number;
-};
-
-export type DetectionResult = {
-  languageId: string;
-  languageName: string;
-  confidence: number;
-  isCreditable: boolean;
-  verbose?: ModelResult[];
-};
 
 const FALLBACK_LANGUAGE = {
   languageId: "txt",
