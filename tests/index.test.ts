@@ -38,6 +38,7 @@ describe("Worker", () => {
       body: JSON.stringify({ text: 'import { Hono } from "hono";' }),
     });
     expect(resp.status).toBe(200);
+    expect(resp.headers.get("Access-Control-Allow-Origin")).toBe("*");
     expect(await resp.json()).toMatchObject({
       confidence: 0.09199294000864029,
       isCreditable: false,

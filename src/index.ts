@@ -5,6 +5,8 @@ import { DetectionOptions, detectLanguages } from "./language-detection";
 // See https://hono.dev/getting-started/cloudflare-workers
 const app = new Hono();
 
+app.use("/guess", cors());
+
 app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
