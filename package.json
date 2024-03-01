@@ -1,0 +1,27 @@
+{
+  "name": "guesslang-worker",
+  "version": "0.1.0",
+  "description": "A worker that uses guesslang's ML model to detect source code languages",
+  "type": "module",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wrangler dev src/index.ts",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "typeCheck": "tsc --noEmit",
+    "test": "vitest",
+    "deploy": "wrangler deploy --minify src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.0.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240222.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.30.1"
+  },
+  "packageManager": "pnpm@8.15.3",
+  "prettier": {}
+}
