@@ -1,18 +1,14 @@
-name: Build and Deploy
+name: Test
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]
 
     steps:
       - name: Checkout Repo
@@ -38,11 +34,3 @@ jobs:
 
       - name: Test
         run: pnpm run test
-
-      # https://github.com/cloudflare/wrangler-action
-      - name: Deploy
-        if: github.ref == 'refs/heads/main'
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
