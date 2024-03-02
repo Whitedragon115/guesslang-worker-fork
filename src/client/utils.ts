@@ -64,14 +64,20 @@ export const sample = <T>(arr: T[]) =>
   arr[Math.floor(Math.random() * arr.length)];
 
 export const getEmoji = (confidence: number) => {
+  if (confidence === 0) {
+    return "";
+  }
+  if (confidence < 0) {
+    return "🤔";
+  }
   if (confidence < 0.05) {
     return "😭";
   }
   if (confidence < 0.1) {
-    return sample("😨😵😖😫😩🥺😢".split(""));
+    return sample(["😨", "😵", "😖", "😫", "😩", "🥺", "😢"]);
   }
   if (confidence < 0.2) {
-    return sample("😞😞😔😟😕🙁😣".split(""));
+    return sample(["😞", "😞", "😔", "😟", "😕", "🙁", "😣"]);
   }
   if (confidence < 0.3) {
     return "🙂";
@@ -80,7 +86,7 @@ export const getEmoji = (confidence: number) => {
     return "😊";
   }
   if (confidence < 0.5) {
-    return "😄🤠😋";
+    return sample(["😄", "🤠", "😋"]);
   }
-  return sample("🤩🥳😏😎😝".split(""));
+  return sample(["🤩", "🥳", "😏", "😎", "😝"]);
 };
