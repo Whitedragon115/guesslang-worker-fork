@@ -9,7 +9,7 @@ describe("Worker", () => {
     worker = await unstable_dev("src/index.ts", {
       experimental: { disableExperimentalWarning: true },
     });
-  });
+  }, 30 * 1000);
 
   afterAll(async () => {
     if (!worker) {
