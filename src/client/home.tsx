@@ -73,7 +73,12 @@ const Header = ({
   result: DetectionResult;
 }) => {
   const { languageName, confidence } = result;
+  const [emoji, setEmoji] = useState(() => getEmoji(confidence));
   const percent = confidence === 0 ? "" : (confidence * 100).toFixed(1) + "%";
+
+  useEffect(() => {
+    setEmoji(getEmoji(confidence));
+  }, [confidence]);
 
   return (
     <div class={playgroundHeaderClass}>
@@ -82,7 +87,7 @@ const Header = ({
         <>
           <div>{languageName}</div>
           <div title="Confidence">
-            {percent} {getEmoji(confidence)}
+            {percent} {emoji}
           </div>
         </>
       )}
@@ -101,15 +106,17 @@ const Header = ({
 };
 
 const ActionBar = ({
-  onClick,
+  onGuess,
+  onChangeAutoGuess,
 }: {
-  onClick: (options: Partial<DetectionOptions>) => void;
+  onGuess?: (options: Partial<DetectionOptions>) => void;
+  onChangeAutoGuess?: (autoGuess: boolean) => void;
 }) => {
   const [verbose, setVerbose] = useState(true);
   const [fineTune, setFineTune] = useState(true);
 
   const handleClick = () => {
-    onClick({
+    onGuess?.({
       fineTune,
       verbose,
     });
@@ -136,13 +143,12 @@ const ActionBar = ({
       <div>
         <input
           type="checkbox"
-          id="fine-tune"
-          name="fine-tune"
+          id="show-details"
           checked={verbose}
           onChange={() => setVerbose(!verbose)}
         />
         <label
-          for="fine-tune"
+          for="show-details"
           class={css`
             user-select: none;
           `}
@@ -154,7 +160,6 @@ const ActionBar = ({
         <input
           type="checkbox"
           id="fine-tune"
-          name="fine-tune"
           checked={fineTune}
           onChange={() => setFineTune(!fineTune)}
         />
@@ -165,6 +170,26 @@ const ActionBar = ({
           `}
         >
           Fine-tune
+        </label>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="auto-guess"
+          checked={false}
+          onChange={(e) => {
+            const autoGuess = (e.target as HTMLInputElement).checked;
+            onChangeAutoGuess?.(autoGuess);
+          }}
+        />
+        <label
+          for="auto-guess"
+          class={css`
+            user-select: none;
+          `}
+        >
+          Auto guess
         </label>
       </div>
       <button class={buttonClass} onClick={handleClick}>
@@ -195,29 +220,32 @@ const useShiki = ({ code, lang }: { code: string; lang: string }) => {
 };
 
 const Playground = ({
-  onChange,
+  onUpdateResult,
 }: {
-  onChange?: (v: DetectionResult | null) => void;
+  onUpdateResult?: (v: DetectionResult | null) => void;
 }) => {
   const [text, setText] = useState(DEFAULT_TEXT);
   const [guessResult, setGuessResult] =
     useState<DetectionResult>(DEFAULT_RESULT);
   const [loading, setLoading] = useState(false);
+  const [autoGuess, setAutoGuess] = useState(false);
   const textareaRef = useRef<HTMLDivElement>(null);
   const { html } = useShiki({ code: text, lang: guessResult.languageId });
 
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.textContent = text;
+    if (!textareaRef.current) {
+      throw new Error("No textareaRef found");
     }
+    // Set initial text
+    textareaRef.current.textContent = text;
   }, []);
 
-  const onClick = async (options: Partial<DetectionOptions>) => {
-    if (!text || loading) {
+  const onGuess = async (options: Partial<DetectionOptions> = {}) => {
+    if (!text || text === "\n" || loading) {
       return;
     }
     setLoading(true);
-    onChange?.(null);
+    onUpdateResult?.(null);
     try {
       const result = await guessLanguage(text, options);
       if (!result) {
@@ -225,13 +253,32 @@ const Playground = ({
         return;
       }
       setGuessResult(result);
-      onChange?.(result);
+      onUpdateResult?.(result);
     } catch (e) {
       console.error(e);
     } finally {
       setLoading(false);
     }
   };
+
+  const [time, setTime] = useState(() => new Date().getTime());
+  useEffect(() => {
+    const MIN_INTERVAL = 4000;
+    if (!autoGuess) {
+      return;
+    }
+    const timer = setTimeout(() => {
+      if (!autoGuess || new Date().getTime() - time < MIN_INTERVAL) {
+        return;
+      }
+      setTime(new Date().getTime());
+      onGuess();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [autoGuess, text]);
+
   return (
     <div class={playgroundClass}>
       <Header loading={loading} result={guessResult} />
@@ -263,6 +310,18 @@ const Playground = ({
             const text = event.clipboardData.getData("text/plain");
             document.execCommand("insertHTML", false, text);
           }}
+          onInput={(event) => {
+            if (!event.target) {
+              throw new Error("No event target found");
+            }
+            setText((event.target as HTMLTextAreaElement).textContent ?? "");
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              document.execCommand("insertLineBreak");
+              event.preventDefault();
+            }
+          }}
           onScroll={(event) => {
             const highlight = document.getElementById("highlight");
             if (!highlight) {
@@ -272,15 +331,9 @@ const Playground = ({
               event.target as HTMLTextAreaElement
             ).scrollTop;
           }}
-          onInput={(event) => {
-            if (!event.target) {
-              throw new Error("No event target found");
-            }
-            setText((event.target as HTMLTextAreaElement).textContent ?? "");
-          }}
         ></div>
       </div>
-      <ActionBar onClick={onClick} />
+      <ActionBar onGuess={onGuess} onChangeAutoGuess={setAutoGuess} />
     </div>
   );
 };
@@ -298,7 +351,7 @@ export const Home = () => {
             🤖 Uses ML model to detect source code languages
           </p>
         </div>
-        <Playground onChange={setGuessResult} />
+        <Playground onUpdateResult={setGuessResult} />
         {guessResult?.modelResults && (
           <Table modelResults={guessResult.modelResults} />
         )}
