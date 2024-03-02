@@ -1,4 +1,4 @@
-import { ModelResult } from "./vscode-languagedetection/index";
+import { ModelResult } from "@vscode/vscode-languagedetection";
 
 export type DetectionOptions = {
   fineTune: boolean;
@@ -11,5 +11,8 @@ export type DetectionResult = {
   languageName: string;
   confidence: number;
   reliable: boolean;
-  verbose?: ModelResult[];
+  /**
+   * Only available when `verbose` is `true`.
+   */
+  modelResult?: ModelResult[];
 };

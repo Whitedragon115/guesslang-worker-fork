@@ -110,7 +110,7 @@ export const detectLanguages = async (
   if (!firstModelResult) {
     return {
       ...FALLBACK_LANGUAGE,
-      ...(options.verbose ? { verbose: modelResults } : {}),
+      ...(options.verbose ? { modelResults: modelResults } : {}),
     };
   }
 
@@ -120,6 +120,6 @@ export const detectLanguages = async (
       languagesMap[firstModelResult.languageId as keyof typeof languagesMap],
     confidence: firstModelResult.confidence,
     reliable: firstModelResult.confidence >= options.expectedRelativeConfidence,
-    ...(options.verbose ? { verbose: modelResults } : {}),
+    ...(options.verbose ? { modelResults: modelResults } : {}),
   };
 };
