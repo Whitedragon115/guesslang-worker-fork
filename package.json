@@ -17,11 +17,11 @@
     "@tensorflow/tfjs-backend-cpu": "^3.21.0",
     "@tensorflow/tfjs-converter": "^3.21.0",
     "@tensorflow/tfjs-core": "^3.21.0",
-    "@vscode/vscode-languagedetection": "^1.0.22",
     "hono": "^4.0.8"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240222.0",
+    "@vscode/vscode-languagedetection": "github:microsoft/vscode-languagedetection",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
     "vite": "^5.1.4",
