@@ -4,7 +4,7 @@ export const DEFAULT_TEXT = `
 enum LogLevel {
   ERROR,
   WARN,
-  INF
+  INF,
   DEBUG,
 }
 
@@ -68,13 +68,10 @@ export const getEmoji = (confidence: number) => {
     return "😭";
   }
   if (confidence < 0.1) {
-    return "😢";
-  }
-  if (confidence < 0.15) {
-    return "😞";
+    return sample("😨😵😖😫😩🥺😢".split(""));
   }
   if (confidence < 0.2) {
-    return "😐";
+    return sample("😞😞😔😟😕🙁😣".split(""));
   }
   if (confidence < 0.3) {
     return "🙂";
@@ -82,5 +79,8 @@ export const getEmoji = (confidence: number) => {
   if (confidence < 0.4) {
     return "😊";
   }
-  return sample(["😄", "🤩", "🥳", "😏", "😎"]);
+  if (confidence < 0.5) {
+    return "😄🤠😋";
+  }
+  return sample("🤩🥳😏😎😝".split(""));
 };

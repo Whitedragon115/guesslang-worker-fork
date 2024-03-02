@@ -50,7 +50,7 @@ export default defineConfig({
     lib: {
       entry: "src/client/index.tsx",
       fileName: "main",
-      formats: ["cjs"],
+      formats: ["es"],
     },
   },
   assetsInclude: ["**/*.bin"],

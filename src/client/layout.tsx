@@ -1,11 +1,10 @@
 import { Style } from "hono/css";
 import { PropsWithChildren } from "hono/jsx";
-import { globalClass } from "./styles";
 
 const siteData = {
   title: "Guess Language Online!",
   description: "Uses ML model to detect source code languages",
-  script: "/static/main.cjs",
+  script: "/static/main.js",
 };
 
 export const Layout = ({ children }: PropsWithChildren) => (
@@ -25,6 +24,6 @@ export const Layout = ({ children }: PropsWithChildren) => (
     <body>
       <div id="root">{children}</div>
     </body>
-    {siteData.script && <script src={siteData.script}></script>}
+    {siteData.script && <script type="module" src={siteData.script}></script>}
   </html>
 );
