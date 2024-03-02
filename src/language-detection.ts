@@ -1,3 +1,5 @@
+// Import from node_modules to avoid the error:
+// ERROR: [plugin: wrangler-module-collector] ENOENT: no such file or directory, open '/home/runner/work/guesslang-worker/guesslang-worker/src/@vscode/vscode-languagedetection/model/group1-shard1of1.bin'
 import NODE_WEIGHTS from "../node_modules/@vscode/vscode-languagedetection/model/group1-shard1of1.bin";
 import NODE_MODEL_JSON from "../node_modules/@vscode/vscode-languagedetection/model/model.json";
 import languagesMap from "./languages.json";
