@@ -47,7 +47,7 @@ To deploy this worker, run `pnpm run deploy`
 
 ## API
 
-## TypeScript Definitions
+### TypeScript Definitions
 
 ```ts
 export type DetectionOptions = {
@@ -98,7 +98,7 @@ export interface ModelResult {
 }
 ```
 
-## `GET /guess`
+### `GET /guess`
 
 #### Query Parameters
 
