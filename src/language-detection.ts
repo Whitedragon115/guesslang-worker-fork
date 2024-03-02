@@ -1,5 +1,5 @@
-import NODE_WEIGHTS from "@vscode/vscode-languagedetection/model/group1-shard1of1.bin";
-import NODE_MODEL_JSON from "@vscode/vscode-languagedetection/model/model.json";
+import NODE_WEIGHTS from "../node_modules/@vscode/vscode-languagedetection/model/group1-shard1of1.bin";
+import NODE_MODEL_JSON from "../node_modules/@vscode/vscode-languagedetection/model/model.json";
 import languagesMap from "./languages.json";
 import { DetectionOptions, DetectionResult } from "./types";
 import { ModelOperations, ModelResult } from "./vscode-languagedetection/index";
