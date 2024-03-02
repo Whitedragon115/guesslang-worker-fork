@@ -1,5 +1,5 @@
 import { css } from "hono/css";
-import { use, useEffect, useRef, useState } from "hono/jsx";
+import { useEffect, useRef, useState } from "hono/jsx";
 import { codeToHtml } from "shiki";
 import { DetectionOptions, DetectionResult } from "../types";
 import type { ModelResult } from "../vscode-languagedetection";
@@ -73,7 +73,7 @@ const Header = ({
   result: DetectionResult;
 }) => {
   const { languageName, confidence } = result;
-  const percent = (confidence * 100).toFixed(1);
+  const percent = confidence === 0 ? "" : (confidence * 100).toFixed(1) + "%";
 
   return (
     <div class={playgroundHeaderClass}>
@@ -82,7 +82,7 @@ const Header = ({
         <>
           <div>{languageName}</div>
           <div title="Confidence">
-            {percent}% {getEmoji(confidence)}
+            {percent} {getEmoji(confidence)}
           </div>
         </>
       )}
@@ -100,7 +100,7 @@ const Header = ({
   );
 };
 
-const Action = ({
+const ActionBar = ({
   onClick,
 }: {
   onClick: (options: Partial<DetectionOptions>) => void;
@@ -126,7 +126,10 @@ const Action = ({
         padding-right: 0.75rem;
 
         & > * + * {
-          margin-left: 0.5rem;
+          margin-left: 1rem;
+        }
+        & > button {
+          margin-left: auto;
         }
       `}
     >
@@ -171,12 +174,12 @@ const Action = ({
   );
 };
 
-const useShiki = ({ code }: { code: string }) => {
+const useShiki = ({ code, lang }: { code: string; lang: string }) => {
   const [html, setHtml] = useState("");
   useEffect(() => {
     const abortController = new AbortController();
     codeToHtml(code, {
-      lang: "javascript",
+      lang,
       theme: "github-light",
     }).then((html) => {
       if (abortController.signal.aborted) {
@@ -187,7 +190,7 @@ const useShiki = ({ code }: { code: string }) => {
     return () => {
       abortController.abort();
     };
-  }, [code]);
+  }, [code, lang]);
   return { html };
 };
 
@@ -201,7 +204,7 @@ const Playground = ({
     useState<DetectionResult>(DEFAULT_RESULT);
   const [loading, setLoading] = useState(false);
   const textareaRef = useRef<HTMLDivElement>(null);
-  const { html } = useShiki({ code: text });
+  const { html } = useShiki({ code: text, lang: guessResult.languageId });
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -245,11 +248,21 @@ const Playground = ({
         />
         <div
           ref={textareaRef}
-          contenteditable
           class={textareaClass}
+          style={text && !html ? { color: "black" } : {}}
+          contenteditable
           autocomplete="off"
           autocorrect="off"
           autocapitalize="off"
+          onPaste={(event) => {
+            // Only allow plain text
+            if (!event.clipboardData) {
+              return;
+            }
+            event.preventDefault();
+            const text = event.clipboardData.getData("text/plain");
+            document.execCommand("insertHTML", false, text);
+          }}
           onScroll={(event) => {
             const highlight = document.getElementById("highlight");
             if (!highlight) {
@@ -267,7 +280,7 @@ const Playground = ({
           }}
         ></div>
       </div>
-      <Action onClick={onClick} />
+      <ActionBar onClick={onClick} />
     </div>
   );
 };

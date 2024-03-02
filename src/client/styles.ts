@@ -62,6 +62,7 @@ export const titleClass = css`
   font-size: 48px;
   max-width: 600px;
   color: rgba(60, 60, 67);
+  margin-top: 2rem;
 `;
 
 export const taglineClass = css`
@@ -75,7 +76,7 @@ export const taglineClass = css`
 
 export const playgroundClass = css`
   width: 100%;
-  min-height: 32rem;
+  min-height: 28rem;
   font-family:
     ui-monospace,
     SFMono-Regular,
@@ -90,7 +91,7 @@ export const playgroundClass = css`
   line-height: 1.7;
   font-size: 1rem;
   border-radius: 8px;
-  margin: 16px 0;
+  margin: 32px 0;
   box-shadow:
     0 1px 3px 0 rgb(0 0 0 / 0.1),
     0 1px 2px -1px rgb(0 0 0 / 0.1);

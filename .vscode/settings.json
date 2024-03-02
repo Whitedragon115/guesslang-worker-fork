@@ -5,5 +5,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
-  "cSpell.words": ["guesslang"]
+  "cSpell.words": ["guesslang", "shiki"]
 }
