@@ -14,5 +14,5 @@ export type DetectionResult = {
   /**
    * Only available when `verbose` is `true`.
    */
-  modelResult?: ModelResult[];
+  modelResults?: ModelResult[];
 };
