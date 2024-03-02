@@ -1,6 +1,8 @@
-import { ModelOperations, ModelResult } from "./vscode-languagedetection/index";
+import NODE_WEIGHTS from "@vscode/vscode-languagedetection/model/group1-shard1of1.bin";
+import NODE_MODEL_JSON from "@vscode/vscode-languagedetection/model/model.json";
 import languagesMap from "./languages.json";
 import { DetectionOptions, DetectionResult } from "./types";
+import { ModelOperations, ModelResult } from "./vscode-languagedetection/index";
 
 /*---------------------------------------------------------------------------------------------
  *  Ported from https://github.com/microsoft/vscode/blob/19ecb4b8337d0871f0a204853003a609d716b04e/src/vs/workbench/services/languageDetection/browser/languageDetectionSimpleWorker.ts
@@ -66,6 +68,13 @@ const adjustLanguageConfidence = (modelResult: ModelResult): ModelResult => {
 // See https://github.com/microsoft/vscode-languagedetection#advanced-options
 const modelOperations = new ModelOperations({
   minContentSize: 0,
+  modelJsonLoaderFunc: async () => {
+    // return await import("@vscode/vscode-languagedetection/model/model.json");
+    return NODE_MODEL_JSON;
+  },
+  weightsLoaderFunc: async () => {
+    return NODE_WEIGHTS;
+  },
 });
 
 const FALLBACK_LANGUAGE = {

@@ -1,12 +1,12 @@
 // This file is ported from [vscode-languagedetection](https://github.com/microsoft/vscode-languagedetection)
 // The original file is located at https://github.com/microsoft/vscode-languagedetection/blob/main/lib/index.ts
 // Licensed under the MIT License.
+//
+// PLEASE DO NOT MODIFY THIS FILE DIRECTLY!
 
 import { Rank, tensor, Tensor, io, setBackend, env } from '@tensorflow/tfjs-core';
 import { GraphModel, loadGraphModel } from '@tensorflow/tfjs-converter';
 import '@tensorflow/tfjs-backend-cpu';
-import NODE_MODEL_JSON from "./model.json";
-import NODE_WEIGHTS from "./group1-shard1of1.bin";
 
 export interface ModelResult {
 	languageId: string;
@@ -90,13 +90,11 @@ export class ModelOperations {
 
 	private static NODE_MODEL_JSON_FUNC: () => Promise<{ [key:string]: any }> = async () => {
 		return new Promise<any>((resolve, reject) => {
-			resolve(NODE_MODEL_JSON);
 		});
 	}
 
 	private static NODE_WEIGHTS_FUNC: () => Promise<ArrayBuffer> = async () => {
 		return new Promise<ArrayBuffer>((resolve, reject) => {
-			resolve(NODE_WEIGHTS);
 		});
 	}
 

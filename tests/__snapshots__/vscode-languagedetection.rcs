@@ -1,19 +1,14 @@
-a0 4
+a0 6
 // This file is ported from [vscode-languagedetection](https://github.com/microsoft/vscode-languagedetection)
 // The original file is located at https://github.com/microsoft/vscode-languagedetection/blob/main/lib/index.ts
 // Licensed under the MIT License.
+//
+// PLEASE DO NOT MODIFY THIS FILE DIRECTLY!
 
-a3 2
-import NODE_MODEL_JSON from "./model.json";
-import NODE_WEIGHTS from "./group1-shard1of1.bin";
 d86 3
 d90 7
-a96 1
-			resolve(NODE_MODEL_JSON);
 d101 3
 d105 7
-a111 1
-			resolve(NODE_WEIGHTS);
 d219 1
 a219 1
 }
