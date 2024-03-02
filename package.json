@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
+    "dev:client": "vite",
+    "build": "vite build",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "typeCheck": "tsc --noEmit",

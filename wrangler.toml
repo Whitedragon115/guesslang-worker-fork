@@ -7,6 +7,9 @@ rules = [
   { type = "Data", globs = ["**/*.bin"], fallthrough = true }
 ]
 
+[site]
+bucket = "./dist"
+
 # [vars]
 # MY_VARIABLE = "production_value"
 

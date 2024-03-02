@@ -29,6 +29,13 @@ function vitePluginArraybuffer(): PluginOption {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    lib: {
+      entry: "src/client/index.tsx",
+      fileName: "main",
+      formats: ["cjs"],
+    },
+  },
   assetsInclude: ["**/*.bin"],
   plugins: [vitePluginArraybuffer()],
 });
