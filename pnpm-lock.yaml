@@ -14,6 +14,9 @@ dependencies:
   '@tensorflow/tfjs-core':
     specifier: ^3.21.0
     version: 3.21.0
+  '@vscode/vscode-languagedetection':
+    specifier: ^1.0.22
+    version: 1.0.22
   hono:
     specifier: ^4.0.8
     version: 4.0.8
@@ -22,9 +25,6 @@ devDependencies:
   '@cloudflare/workers-types':
     specifier: ^4.20240222.0
     version: 4.20240222.0
-  '@vscode/vscode-languagedetection':
-    specifier: github:microsoft/vscode-languagedetection
-    version: github.com/microsoft/vscode-languagedetection/100acd12e5035fed1806b69a77faccc6432a81f3
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
@@ -769,6 +769,11 @@ packages:
       loupe: 2.3.7
       pretty-format: 29.7.0
     dev: true
+
+  /@vscode/vscode-languagedetection@1.0.22:
+    resolution: {integrity: sha512-rQ/BgMyLuIXSmbA0MSkIPHtcOw14QkeDbAq19sjvaS9LTRr905yij0S8lsyqN5JgOsbtIx7pAcyOxFMzPmqhZQ==}
+    hasBin: true
+    dev: false
 
   /@webgpu/types@0.1.16:
     resolution: {integrity: sha512-9E61voMP4+Rze02jlTXud++Htpjyyk8vw5Hyw9FGRrmhHQg2GqbuOfwf5Klrb8vTxc2XWI3EfO7RUHMpxTj26A==}
@@ -1752,11 +1757,4 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
-    dev: true
-
-  github.com/microsoft/vscode-languagedetection/100acd12e5035fed1806b69a77faccc6432a81f3:
-    resolution: {tarball: https://codeload.github.com/microsoft/vscode-languagedetection/tar.gz/100acd12e5035fed1806b69a77faccc6432a81f3}
-    name: '@vscode/vscode-languagedetection'
-    version: 1.0.22
-    hasBin: true
     dev: true
