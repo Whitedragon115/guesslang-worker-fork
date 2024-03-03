@@ -92,16 +92,16 @@ export const playgroundClass = css`
   font-size: 1rem;
   border-radius: 8px;
   margin: 32px 0;
+  padding: 20px 24px;
   box-shadow:
     0 1px 3px 0 rgb(0 0 0 / 0.1),
     0 1px 2px -1px rgb(0 0 0 / 0.1);
 `;
 
 export const textareaClass = css`
-  appearance: none;
   z-index: 1;
-  color: transparent;
   background-color: transparent;
+  color: transparent;
   /* opacity: 0.5; */
   font-size: 14px;
   line-height: 1.7;
@@ -111,10 +111,6 @@ export const textareaClass = css`
   right: 0;
   bottom: 0;
   left: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 24px;
-  padding-right: 24px;
   border: none;
   outline: none;
   overflow: auto;

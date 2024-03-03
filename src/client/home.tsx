@@ -261,6 +261,19 @@ const Playground = ({
     }
   };
 
+  const syncScroll = () => {
+    const textArea = textareaRef.current;
+    const highlight = document.getElementById("highlight");
+    if (!highlight || !textArea) {
+      return;
+    }
+    highlight.scrollTop = textArea.scrollTop;
+    highlight.scrollLeft = textArea.scrollLeft;
+  };
+  useEffect(() => {
+    syncScroll();
+  }, [html]);
+
   const [time, setTime] = useState(() => new Date().getTime());
   useEffect(() => {
     const MIN_INTERVAL = 4000;
@@ -308,7 +321,11 @@ const Playground = ({
             }
             event.preventDefault();
             const text = event.clipboardData.getData("text/plain");
-            document.execCommand("insertHTML", false, text);
+            if (!text) return;
+            text.split("\n").forEach((line, i) => {
+              if (i !== 0) document.execCommand("insertLineBreak");
+              document.execCommand("insertText", false, line);
+            });
           }}
           onInput={(event) => {
             if (!event.target) {
@@ -317,20 +334,14 @@ const Playground = ({
             setText((event.target as HTMLTextAreaElement).textContent ?? "");
           }}
           onKeyDown={(event) => {
+            // Prevent contenteditable adding <div> on ENTER - Chrome
+            // https://stackoverflow.com/questions/18552336/prevent-contenteditable-adding-div-on-enter-chrome
             if (event.key === "Enter") {
               document.execCommand("insertLineBreak");
               event.preventDefault();
             }
           }}
-          onScroll={(event) => {
-            const highlight = document.getElementById("highlight");
-            if (!highlight) {
-              return;
-            }
-            highlight.scrollTop = (
-              event.target as HTMLTextAreaElement
-            ).scrollTop;
-          }}
+          onScroll={syncScroll}
         ></div>
       </div>
       <ActionBar onGuess={onGuess} onChangeAutoGuess={setAutoGuess} />
