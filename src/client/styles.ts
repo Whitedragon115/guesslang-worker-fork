@@ -101,7 +101,7 @@ export const playgroundClass = css`
 export const textareaClass = css`
   z-index: 1;
   background-color: transparent;
-  color: transparent;
+  /* color: transparent; */
   /* opacity: 0.5; */
   font-size: 14px;
   line-height: 1.7;
@@ -116,6 +116,10 @@ export const textareaClass = css`
   overflow: auto;
   resize: none;
   white-space: pre;
+
+  & > pre {
+    background-color: transparent !important;
+  }
 `;
 
 export const buttonClass = css`

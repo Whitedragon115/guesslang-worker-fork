@@ -301,48 +301,31 @@ const Playground = ({
           flex: 1;
         `}
       >
-        <span
-          id="highlight"
-          class={textareaClass}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
         <div
           ref={textareaRef}
           class={textareaClass}
           style={text && !html ? { color: "black" } : {}}
-          contenteditable
+          // @ts-expect-error
+          contenteditable="plaintext-only"
           autocomplete="off"
           autocorrect="off"
           autocapitalize="off"
-          onPaste={(event) => {
-            // Only allow plain text
-            if (!event.clipboardData) {
-              return;
-            }
-            event.preventDefault();
-            const text = event.clipboardData.getData("text/plain");
-            if (!text) return;
-            text.split("\n").forEach((line, i) => {
-              if (i !== 0) document.execCommand("insertLineBreak");
-              document.execCommand("insertText", false, line);
-            });
-          }}
           onInput={(event) => {
             if (!event.target) {
               throw new Error("No event target found");
             }
             setText((event.target as HTMLTextAreaElement).textContent ?? "");
           }}
-          onKeyDown={(event) => {
-            // Prevent contenteditable adding <div> on ENTER - Chrome
-            // https://stackoverflow.com/questions/18552336/prevent-contenteditable-adding-div-on-enter-chrome
-            if (event.key === "Enter") {
-              document.execCommand("insertLineBreak");
-              event.preventDefault();
-            }
-          }}
           onScroll={syncScroll}
         ></div>
+        <span
+          id="highlight"
+          class={textareaClass}
+          style={{
+            pointerEvents: "none",
+          }}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       </div>
       <ActionBar onGuess={onGuess} onChangeAutoGuess={setAutoGuess} />
     </div>
