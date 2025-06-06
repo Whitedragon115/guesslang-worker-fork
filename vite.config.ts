@@ -45,14 +45,57 @@ const vitePluginIgnoreContentManifest: PluginOption = {
 };
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  build: {
-    lib: {
-      entry: "src/client/index.tsx",
-      fileName: "main",
-      formats: ["es"],
-    },
-  },
-  assetsInclude: ["**/*.bin"],
-  plugins: [vitePluginArraybuffer, vitePluginIgnoreContentManifest],
+export default defineConfig(({ command }) => {
+  // Check if we're building for Node.js server
+  const isServerBuild = process.argv.includes('--ssr') || process.env.BUILD_TARGET === 'server';
+    if (command === 'build' && isServerBuild) {
+    // Server build configuration
+    return {
+      build: {
+        rollupOptions: {
+          input: "src/server.ts",
+          output: {
+            entryFileNames: 'server.js',
+            format: 'es'
+          },
+          external: ['@hono/node-server', '@tensorflow/tfjs-core', '@tensorflow/tfjs-backend-cpu', '@tensorflow/tfjs-converter']
+        },
+        target: 'node18',
+        ssr: true,
+        minify: false,
+        outDir: 'dist-server'
+      },
+      assetsInclude: ["**/*.bin"],
+      plugins: [vitePluginArraybuffer, vitePluginIgnoreContentManifest],
+    };} else if (command === 'build') {
+    // Client build configuration
+    return {
+      build: {
+        rollupOptions: {
+          input: "src/client/index.tsx",
+          output: {
+            entryFileNames: 'main.js',
+            format: 'es'
+          }
+        },
+        target: 'es2020',
+        outDir: 'dist/static',
+        minify: true,
+        emptyOutDir: false
+      },
+      assetsInclude: ["**/*.bin"],
+      plugins: [vitePluginArraybuffer, vitePluginIgnoreContentManifest],
+    };
+  }
+  
+  // Dev configuration
+  return {
+    assetsInclude: ["**/*.bin"],
+    plugins: [vitePluginArraybuffer, vitePluginIgnoreContentManifest],
+    resolve: {
+      alias: {
+        '@': '/src'
+      }
+    }
+  };
 });
